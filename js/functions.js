@@ -1,5 +1,3 @@
-'use strict';
-
 //Задание №1
 
 function checkStringLength (string, lengthLimit) {
