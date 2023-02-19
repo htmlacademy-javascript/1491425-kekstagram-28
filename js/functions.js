@@ -65,3 +65,27 @@ getNumber(2023); //Результат: число 2023
 getNumber(-1); //Результат: число 1
 getNumber(1.5); //Результат: число 15
 
+//Задание №4
+
+function createsFileAddresses (prymaryString, minLength, secondaryString) {
+
+  let newStr = '';
+  const numberCicle = minLength - (prymaryString.length + secondaryString.length);
+
+  secondaryString = secondaryString.slice(0, minLength - prymaryString.length);
+
+  if (prymaryString.length + secondaryString.length < minLength) {
+    for (let i = 0; i < numberCicle; i++) {
+      newStr += secondaryString[0];
+    }
+    return newStr + secondaryString + prymaryString;
+  }
+
+  return secondaryString + prymaryString;
+}
+
+createsFileAddresses('1', 2, '0'); // Результат: строка '01'
+createsFileAddresses('1', 4, '0'); // Результат: строка '0001'
+createsFileAddresses('q', 4, 'werty'); // Результат: строка 'werq'
+createsFileAddresses('q', 4, 'we'); // Результат: строка 'wweq'
+createsFileAddresses('qwerty', 4, '0'); // Результат: строка 'qwerty'
