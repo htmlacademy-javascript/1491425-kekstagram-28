@@ -32,24 +32,18 @@ function getNumber (value) {
 
   if (typeof(value) === 'number') {
     value = String(value);
-
-    for (let i = 0; i < value.length; i++) {
-      if (value[i] >= 0) {
-        newNumber += value[i];
-      }
-    }
   } else {
     value = value.replaceAll(' ', '');
+  }
 
-    for (let i = 0; i < value.length; i++) {
-      if (value[i] >= 0) {
-        newNumber += value[i];
-      }
+  for (let i = 0; i < value.length; i++) {
+    if (value[i] >= 0) {
+      newNumber += value[i];
     }
+  }
 
-    if (newNumber === '') {
-      return NaN;
-    }
+  if (newNumber === '') {
+    return NaN;
   }
 
   return Number(newNumber);
