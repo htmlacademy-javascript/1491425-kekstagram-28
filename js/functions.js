@@ -61,19 +61,17 @@ getNumber(1.5); //Результат: число 15
 
 function createsFileAddresses (prymaryString, minLength, secondaryString) {
 
-  let newString = '';
-  const numberCicle = minLength - (prymaryString.length + secondaryString.length);
+  while (prymaryString.length < minLength) {
 
-  secondaryString = secondaryString.slice(0, minLength - prymaryString.length);
-
-  if (prymaryString.length + secondaryString.length < minLength) {
-    for (let i = 0; i < numberCicle; i++) {
-      newString += secondaryString[0];
+    if (secondaryString.length <= minLength - prymaryString.length) {
+      prymaryString = secondaryString + prymaryString;
+    } else {
+      secondaryString = secondaryString.slice(0, minLength - prymaryString.length);
+      prymaryString = secondaryString + prymaryString;
     }
-    return newString + secondaryString + prymaryString;
   }
 
-  return secondaryString + prymaryString;
+  return prymaryString;
 }
 
 createsFileAddresses('1', 2, '0'); // Результат: строка '01'
