@@ -1,10 +1,10 @@
 const MIN_ID = 1;
 const MAX_ID = 25;
-const ID_PHOTO = createRandomIdFromRangeGenerator(MIN_ID, MAX_ID);
+const getIdPhoto = createRandomIdFromRangeGenerator(MIN_ID, MAX_ID);
 
 const URL_MIN = 1;
 const URL_MAX = 25;
-const URL_PHOTO = createRandomIdFromRangeGenerator(URL_MIN, URL_MAX);
+const getUrlPhoto = createRandomIdFromRangeGenerator(URL_MIN, URL_MAX);
 
 const PHOTO_DESCRIPTIONS = [
   'Пустой пляж на фоне красивого отеля.', 'Указатель, где находится пляж', 'Место, куда хочется вернуться', 'Обожаю море на фоне заката', 'Оригинальное блюдо) Очень вкусно!',
@@ -19,7 +19,7 @@ const MAX_LIKES = 200;
 
 const MIN_ID_COMMENT = 1;
 const MAX_ID_COMMENT = 25;
-const ID_COMMENT = createRandomIdFromRangeGenerator(MIN_ID_COMMENT, MAX_ID_COMMENT);
+const getIdComment = createRandomIdFromRangeGenerator(MIN_ID_COMMENT, MAX_ID_COMMENT);
 
 const MIN_RANDOM_NUMBER = 1;
 const MAX_RANDOM_NUMBER = 6;
@@ -68,20 +68,20 @@ function createRandomIdFromRangeGenerator (min, max) {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-const commentUser = () => ({
-  id: ID_COMMENT(),
+const getUserComment = () => ({
+  id: getIdComment(),
   avatar: `img/avatar-${getRandomInteger(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)}.svg`,
   message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES),
 });
 
-const photoDescription = () => ({
-  id: ID_PHOTO(),
-  url: `photos/${URL_PHOTO()}.jpg`,
+const getPhotoDescription = () => ({
+  id: getIdPhoto(),
+  url: `photos/${getUrlPhoto()}.jpg`,
   description: getRandomArrayElement(PHOTO_DESCRIPTIONS),
   likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-  comments: commentUser(),
+  comments: Array.from({length: getRandomInteger(1, 6)}, getUserComment),
 });
 
-const similarPhotoDescriptions = Array.from({length: NUMBER_OBJECTS}, photoDescription);
+const similarPhotoDescriptions = Array.from({length: NUMBER_OBJECTS}, getPhotoDescription);
 similarPhotoDescriptions();
