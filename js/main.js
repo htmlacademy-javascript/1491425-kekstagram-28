@@ -83,5 +83,5 @@ const photoDescription = () => ({
   comments: commentUser(),
 });
 
-const similarPhotoDescription = Array.from({length: NUMBER_OBJECTS}, photoDescription);
-similarPhotoDescription();
+const similarPhotoDescriptions = Array.from({length: NUMBER_OBJECTS}, photoDescription);
+similarPhotoDescriptions();
