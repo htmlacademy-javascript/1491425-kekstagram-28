@@ -1,4 +1,8 @@
 import {createPhotoDescriptions} from './data.js';
-import './rendering.js';
+import {assemblyElements} from './rendering.js';
+import './rendering-full-image.js';
 
-createPhotoDescriptions();
+const photoDetails = createPhotoDescriptions();
+assemblyElements(photoDetails);
+
+export {photoDetails};
