@@ -35,14 +35,14 @@ const renderImage = (image) => {
   photoDescription.textContent = image.description;
 };
 
-const generateComments = (comment) => {
+const renderComments = (picture) => {
   commentsList.innerHTML = '';
   const commentsFragment = document.createDocumentFragment();
-  comment.comments.forEach((elementComment) => {
+  picture.comments.forEach((comment) => {
     const newComment = commentItem.cloneNode(true);
-    newComment.querySelector('.social__picture').src = elementComment.avatar;
-    newComment.querySelector('.social__picture').alt = elementComment.name;
-    newComment.querySelector('.social__text').textContent = elementComment.message;
+    newComment.querySelector('.social__picture').src = comment.avatar;
+    newComment.querySelector('.social__picture').alt = comment.name;
+    newComment.querySelector('.social__text').textContent = comment.message;
     commentsFragment.append(newComment);
   });
   commentsList.append(commentsFragment);
@@ -56,4 +56,4 @@ function сloseImageModal (evt) {
   document.removeEventListener('keydown', onDocumentKeyDown);
 }
 
-export {imageModalOpen, renderImage, generateComments};
+export {imageModalOpen, renderImage, renderComments};
