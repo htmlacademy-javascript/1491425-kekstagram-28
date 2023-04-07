@@ -24,7 +24,7 @@ const imageModalOpen = () => {
   imageComments.classList.add('hidden');
   commentsDownloadButton.classList.add('hidden');
   body.classList.add('modal-open');
-  exitFullScreenImage.addEventListener('click', сloseImageModal );
+  exitFullScreenImage.addEventListener('click', сloseImageModal);
   document.addEventListener('keydown', onDocumentKeyDown);
 };
 
