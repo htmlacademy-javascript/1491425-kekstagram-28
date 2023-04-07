@@ -4,7 +4,7 @@ import {onLoaderClick, commentsCounter} from './render-pictures.js';
 const body = document.querySelector('body');
 const fullScreenImageDisplay = document.querySelector('.big-picture');
 const exitFullScreenImage = fullScreenImageDisplay.querySelector('.big-picture__cancel');
-const commentsLoader  = fullScreenImageDisplay.querySelector('.comments-loader');
+const commentsLoader = fullScreenImageDisplay.querySelector('.comments-loader');
 const fullScreenImage = fullScreenImageDisplay.querySelector('.big-picture__img');
 const likesCount = fullScreenImageDisplay.querySelector('.likes-count');
 const commentsCount = fullScreenImageDisplay.querySelector('.comments-count');
