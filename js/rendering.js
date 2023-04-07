@@ -1,5 +1,5 @@
 import {createPhotoDescriptions} from './data.js';
-import {imageModalOpen, renderingImage, generateComments} from './picture-modal.js';
+import {imageModalOpen, renderImage, generateComments} from './picture-modal.js';
 
 const dataFotos = createPhotoDescriptions();
 const pictureContainer = document.querySelector('.pictures');
@@ -23,7 +23,7 @@ const onPictureClicked = (evt) => {
     imageModalOpen();
     const desiredElement = evt.target.closest('.picture');
     const desiredObject = dataFotos.find((element) => element.id === Number(desiredElement.dataset.id));
-    renderingImage(desiredObject);
+    renderImage(desiredObject);
     generateComments(desiredObject);
   }
 };

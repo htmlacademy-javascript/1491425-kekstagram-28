@@ -15,7 +15,7 @@ const commentItem = fullScreenImageDisplay.querySelector('.social__comment');
 const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    imageModalClose(evt);
+    сloseImageModal (evt);
   }
 };
 
@@ -24,34 +24,36 @@ const imageModalOpen = () => {
   imageComments.classList.add('hidden');
   commentsDownloadButton.classList.add('hidden');
   body.classList.add('modal-open');
-  exitFullScreenImage.addEventListener('click', imageModalClose);
+  exitFullScreenImage.addEventListener('click', сloseImageModal );
   document.addEventListener('keydown', onDocumentKeyDown);
 };
 
-const renderingImage = (obj) => {
-  fullScreenImage.querySelector('img').src = obj.url;
-  likesCount.textContent = obj.likes;
-  commentsCount.textContent = obj.comments.length;
-  photoDescription.textContent = obj.description;
+const renderImage = (image) => {
+  fullScreenImage.querySelector('img').src = image.url;
+  likesCount.textContent = image.likes;
+  commentsCount.textContent = image.comments.length;
+  photoDescription.textContent = image.description;
 };
 
-const generateComments = (obj) => {
+const generateComments = (comment) => {
   commentsList.innerHTML = '';
-  obj.comments.forEach((subObj) => {
+  const commentsFragment = document.createDocumentFragment();
+  comment.comments.forEach((elementComment) => {
     const newComment = commentItem.cloneNode(true);
-    newComment.querySelector('.social__picture').src = subObj.avatar;
-    newComment.querySelector('.social__picture').alt = subObj.name;
-    newComment.querySelector('.social__text').alt = subObj.message;
-    commentsList.append(newComment);
+    newComment.querySelector('.social__picture').src = elementComment.avatar;
+    newComment.querySelector('.social__picture').alt = elementComment.name;
+    newComment.querySelector('.social__text').textContent = elementComment.message;
+    commentsFragment.append(newComment);
   });
+  commentsList.append(commentsFragment);
 };
 
-function imageModalClose (evt) {
+function сloseImageModal (evt) {
   evt.preventDefault();
   fullScreenImageDisplay.classList.add('hidden');
   body.classList.remove('modal-open');
-  exitFullScreenImage.removeEventListener('click', imageModalClose);
+  exitFullScreenImage.removeEventListener('click', сloseImageModal);
   document.removeEventListener('keydown', onDocumentKeyDown);
 }
 
-export {imageModalOpen, renderingImage, generateComments};
+export {imageModalOpen, renderImage, generateComments};
