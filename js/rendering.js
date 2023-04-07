@@ -1,19 +1,33 @@
 import {createPhotoDescriptions} from './data.js';
+import {imageModalOpen, renderImage, generateComments} from './picture-modal.js';
 
 const dataFotos = createPhotoDescriptions();
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureFragment = document.createDocumentFragment();
 
-dataFotos.forEach(({url, likes, comments}) => {
-  const pictureElement = pictureTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = url;
-  pictureElement.querySelector('.picture__likes').textContent = likes;
-  const messages = comments.map((message) => message.message);
-  pictureElement.querySelector('.picture__comments').textContent = messages.length;
-  pictureFragment.append(pictureElement);
-});
+const addPictures = () => {
+  dataFotos.forEach((element) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = element.url;
+    pictureElement.querySelector('.picture__likes').textContent = element.likes;
+    pictureElement.querySelector('.picture__comments').textContent = element.comments.length;
+    pictureElement.dataset.id = element.id;
+    pictureFragment.append(pictureElement);
+  });
+  pictureContainer.append(pictureFragment);
+};
 
-pictureContainer.append(pictureFragment);
+const onPictureClicked = (evt) => {
+  if (evt.target.closest('.picture')) {
+    imageModalOpen();
+    const desiredElement = evt.target.closest('.picture');
+    const desiredObject = dataFotos.find((element) => element.id === Number(desiredElement.dataset.id));
+    renderImage(desiredObject);
+    generateComments(desiredObject);
+  }
+};
 
-export {dataFotos};
+pictureContainer.addEventListener('click', onPictureClicked);
+
+export {addPictures};
