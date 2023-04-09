@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import {onLoaderClick, commentsCounter} from './render-pictures.js';
+import {onLoaderClick, commentsCounter} from './rendering.js';
 
 const body = document.querySelector('body');
 const fullScreenImageDisplay = document.querySelector('.big-picture');
@@ -54,9 +54,9 @@ const addComments = (commentsArray) => {
   renderComments(commentsToAdd);
 };
 
-const loadComments = (obj) => {
+const loadComments = (commentUser) => {
   commentsStep += 5;
-  renderComments(obj.slice(commentsList.children.length, commentsStep));
+  renderComments(commentUser.slice(commentsList.children.length, commentsStep));
 };
 
 function сloseImageModal (evt) {

@@ -24,4 +24,33 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement, isEscapeKey};
+const getNumber = (value) => {
+  let newNumber = '';
+
+  if (typeof(value) === 'number') {
+    value = String(value);
+  } else {
+    value = value.replaceAll(' ', '');
+  }
+
+  for (let i = 0; i < value.length; i++) {
+    if (value[i] >= 0) {
+      newNumber += value[i];
+    }
+  }
+
+  if (newNumber === '') {
+    return NaN;
+  }
+
+  return Number(newNumber);
+};
+
+const findDuplicates = (arr) => {
+  const arrSet = new Set(arr);
+  return arrSet.size === arr.length;
+};
+
+const checkStringLength = (string, lengthLimit) => string.length <= lengthLimit;
+
+export {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement, isEscapeKey, getNumber, findDuplicates, checkStringLength};
