@@ -10,10 +10,11 @@ const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
 
 const testHashtag = (value) => HASHTAG_REGEXP.test(value);
-const checkHashtagAmount = (str) => str.trim().split(' ').length <= MAX_HASHTAG_AMOUNT;
+const prepareHashtagValue = (str) => str.trim().split(' ');
+const checkHashtagAmount = (str) => prepareHashtagValue(str).length <= MAX_HASHTAG_AMOUNT;
 const findHashtagDuplicates = (str) => findDuplicates(str.trim().toLowerCase().split(' '));
-const testHashtagValue = (str) => str.trim().split(' ').every(testHashtag);
-const testHashtagLength = (str) => str.trim().split(' ').every((el) => el.length <= MAX_HASHTAG_LENGTH);
+const testHashtagValue = (str) => prepareHashtagValue(str).every(testHashtag);
+const testHashtagLength = (str) => prepareHashtagValue(str).every((el) => el.length <= MAX_HASHTAG_LENGTH);
 const checkComment = (str) => checkStringLength(str, MAX_COMMENT_LENGTH);
 
 const pristine = new Pristine(uploadForm, {
