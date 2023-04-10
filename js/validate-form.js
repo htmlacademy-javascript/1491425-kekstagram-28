@@ -9,7 +9,7 @@ const uploadForm = document.querySelector('.img-upload__form');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
 
-const testHashtag = (value) => HASHTAG_REGEXP.test(value);
+const testHashtag = (value) => HASHTAG_REGEXP.test(value) || value === '';
 const prepareHashtagValue = (str) => str.trim().split(' ');
 const checkHashtagAmount = (str) => prepareHashtagValue(str).length <= MAX_HASHTAG_AMOUNT;
 const findHashtagDuplicates = (str) => findDuplicates(str.trim().toLowerCase().split(' '));
