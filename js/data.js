@@ -1,4 +1,4 @@
-import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
+/* import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
 
 const MIN_ID = 1;
 const MAX_ID = 25;
@@ -64,3 +64,4 @@ const getPhotoDescription = () => ({
 const createPhotoDescriptions = () => Array.from({length: NUMBER_OBJECTS}, getPhotoDescription);
 
 export {createPhotoDescriptions};
+ */
