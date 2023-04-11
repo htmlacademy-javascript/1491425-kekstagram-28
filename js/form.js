@@ -1,4 +1,4 @@
-import { getNumber } from './util.js';
+import {getNumber, isEscapeKey} from './util.js';
 import {validateForm} from './validate-form.js';
 import {sliderFieldset, createSlider, onEffectsListClick, destroySlider} from './form-sliders.js';
 import { sendData } from './server-data.js';
@@ -7,6 +7,7 @@ import {showErrorAlert, showSuccessAlert} from './notifications.js';
 const MIN_SCALE_AMOUNT = 25;
 const MAX_SCALE_AMOUNT = 100;
 const SCALE_STEP = 25;
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
@@ -62,9 +63,21 @@ const onFormSubmit = (evt) => {
 };
 
 const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape' && !evt.target.closest('.text__hashtags') && !evt.target.closest ('.text__description')) {
-    resetForm();
+  if (isEscapeKey(evt) && !evt.target.closest('.text__hashtags') && !evt.target.closest ('.text__description')) {
     imgUploadClose();
+  }
+};
+
+const onCloseFormBtnClick = () => {
+  imgUploadClose();
+};
+
+const uploadFile = () => {
+  const file = imgUploadInput.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  if (matches) {
+    imgUploadPrewiev.src = URL.createObjectURL(file);
   }
 };
 
@@ -73,21 +86,23 @@ function onImageUpload () {
   uploadOverlay.classList.remove('hidden');
   sliderFieldset.classList.add('hidden');
   createSlider();
+  uploadFile();
   scaleControls.addEventListener('click', onScaleControlsClick);
   effectsList.addEventListener('change', onEffectsListClick);
   uploadForm.addEventListener('submit', onFormSubmit);
-  closeFormBtn.addEventListener('click', imgUploadClose);
+  closeFormBtn.addEventListener('click', onCloseFormBtnClick);
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
 function imgUploadClose () {
   document.body.classList.remove('modal-open');
   uploadOverlay.classList.add('hidden');
+  resetForm();
   destroySlider();
   scaleControls.removeEventListener('click', onScaleControlsClick);
   effectsList.removeEventListener('change', onEffectsListClick);
   uploadForm.removeEventListener('submit', onFormSubmit);
-  closeFormBtn.removeEventListener('click', imgUploadClose);
+  closeFormBtn.removeEventListener('click', onCloseFormBtnClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 imgUploadInput.addEventListener('change', onImageUpload);
