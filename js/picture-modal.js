@@ -20,11 +20,12 @@ const onDocumentKeyDown = (evt) => {
   }
 };
 
+const onCloseBtnClick = (evt) => сloseImageModal(evt);
+
 const imageModalOpen = () => {
   fullScreenImageDisplay.classList.remove('hidden');
-
   body.classList.add('modal-open');
-  exitFullScreenImage.addEventListener('click', сloseImageModal);
+  exitFullScreenImage.addEventListener('click', onCloseBtnClick);
   document.addEventListener('keydown', onDocumentKeyDown);
   commentsLoader.addEventListener('click', onLoaderClick);
 };
@@ -63,7 +64,7 @@ function сloseImageModal (evt) {
   evt.preventDefault();
   fullScreenImageDisplay.classList.add('hidden');
   body.classList.remove('modal-open');
-  exitFullScreenImage.removeEventListener('click', сloseImageModal);
+  exitFullScreenImage.removeEventListener('click', onCloseBtnClick);
   document.removeEventListener('keydown', onDocumentKeyDown);
   commentsStep = 5;
   commentsLoader.removeEventListener('click', onLoaderClick);
