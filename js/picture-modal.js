@@ -1,6 +1,7 @@
 import { isEscapeKey } from './util.js';
 import {onLoaderClick, commentsCounter} from './rendering.js';
 
+const DEFAULT_COMMENT_STEP = 5;
 const body = document.querySelector('body');
 const fullScreenImageDisplay = document.querySelector('.big-picture');
 const exitFullScreenImage = fullScreenImageDisplay.querySelector('.big-picture__cancel');
@@ -11,7 +12,7 @@ const commentsCount = fullScreenImageDisplay.querySelector('.comments-count');
 const photoDescription = fullScreenImageDisplay.querySelector('.social__caption');
 const commentsList = fullScreenImageDisplay.querySelector('.social__comments');
 const commentItem = fullScreenImageDisplay.querySelector('.social__comment');
-let commentsStep = 5;
+let commentsStep = DEFAULT_COMMENT_STEP;
 
 const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
