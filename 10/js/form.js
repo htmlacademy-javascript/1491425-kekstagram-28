@@ -55,7 +55,6 @@ const onFormSubmit = (evt) => {
         showSuccessAlert();
       })
       .catch(() => {
-        imgUploadClose();
         showErrorAlert();
       })
       .finally(unblockSubmitButton());
