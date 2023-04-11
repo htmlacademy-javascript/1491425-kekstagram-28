@@ -1,4 +1,4 @@
-import {addPictures} from './rendering.js';
+import { getPictures } from './get-data.js';
 import './form.js';
 
-addPictures();
+getPictures();
