@@ -1,6 +1,6 @@
 import {imgUploadPrewiev} from './form.js';
 
-const EFFECTS_MAP = {
+const Filter = {
   chrome: {
     filter: 'grayscale',
     range: {
@@ -75,11 +75,11 @@ const destroySlider = () => {
 const updateSlider = (effect) => {
   slider.noUiSlider.updateOptions({
     range: {
-      min: EFFECTS_MAP[effect].range.min,
-      max: EFFECTS_MAP[effect].range.max,
+      min: Filter[effect].range.min,
+      max: Filter[effect].range.max,
     },
-    start: EFFECTS_MAP[effect].start,
-    step: EFFECTS_MAP[effect].step,
+    start: Filter[effect].start,
+    step: Filter[effect].step,
   });
 };
 
@@ -88,10 +88,10 @@ const getSliderValue = (effect) => {
     slider.noUiSlider.off();
     sliderFieldset.classList.add('hidden');
   } else {
-    updateSlider(effect);
+    updateSlider(effect.toUpperCase());
     slider.noUiSlider.on('update', () => {
       sliderValue.value = slider.noUiSlider.get();
-      imgUploadPrewiev.style.filter = `${EFFECTS_MAP[effect].filter}(${slider.noUiSlider.get()}${EFFECTS_MAP[effect].dimension})`;
+      imgUploadPrewiev.style.filter = `${Filter[effect.toUpperCase()].filter}(${slider.noUiSlider.get()}${Filter[effect.toUpperCase()].dimension})`;
       sliderFieldset.classList.remove('hidden');
     });
   }
@@ -99,6 +99,7 @@ const getSliderValue = (effect) => {
 
 const onEffectsListClick = (evt) => {
   if (evt.target.closest('.effects__radio')) {
+    sliderValue.value = 1;
     imgUploadPrewiev.removeAttribute('class');
     imgUploadPrewiev.style = '';
     imgUploadPrewiev.classList.add(`effects__preview--${evt.target.value}`);
