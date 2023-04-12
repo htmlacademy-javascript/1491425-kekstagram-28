@@ -22,7 +22,8 @@ const pristine = new Pristine(uploadForm, {
   errorTextParent: 'img-upload__text',
 });
 
-pristine.addValidator(hashtagInput, checkHashtagAmount, 'Нельзя указать более пяти хэш-тегов'
+pristine.addValidator(
+  hashtagInput, checkHashtagAmount, 'Нельзя указать более пяти хэш-тегов'
 );
 
 pristine.addValidator(
@@ -40,6 +41,7 @@ pristine.addValidator(
 pristine.addValidator(
   commentInput, checkComment, 'Комментарий не может быть длиннее 140 символов'
 );
+
 const validateForm = () => pristine.validate();
 
 export {validateForm};

@@ -1,7 +1,7 @@
 import {imgUploadPrewiev} from './form.js';
 
 const Filter = {
-  chrome: {
+  CHROME: {
     filter: 'grayscale',
     range: {
       min: 0,
@@ -11,7 +11,7 @@ const Filter = {
     step: 0.1,
     dimension: '',
   },
-  sepia:  {
+  SEPIA:  {
     filter: 'sepia',
     range: {
       min: 0,
@@ -21,7 +21,7 @@ const Filter = {
     step: 0.1,
     dimension: '',
   },
-  marvin:  {
+  MARVIN:  {
     filter: 'invert',
     range: {
       min: 0,
@@ -31,7 +31,7 @@ const Filter = {
     step: 1,
     dimension: '%',
   },
-  phobos: {
+  PHOBOS: {
     filter: 'blur',
     range: {
       min: 0,
@@ -41,7 +41,7 @@ const Filter = {
     step: 0.1,
     dimension: 'px',
   },
-  heat: {
+  HEAT: {
     filter: 'brightness',
     range: {
       min: 0,

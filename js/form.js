@@ -58,7 +58,7 @@ const onFormSubmit = (evt) => {
       .catch(() => {
         showErrorAlert();
       })
-      .finally(unblockSubmitButton());
+      .finally(unblockSubmitButton);
   }
 };
 
@@ -75,7 +75,7 @@ const onCloseFormBtnClick = () => {
 const uploadFile = () => {
   const file = imgUploadInput.files[0];
   const fileName = file.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
   if (matches) {
     imgUploadPrewiev.src = URL.createObjectURL(file);
   }

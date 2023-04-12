@@ -11,7 +11,7 @@ const likesCount = fullScreenImageDisplay.querySelector('.likes-count');
 const commentsCount = fullScreenImageDisplay.querySelector('.comments-count');
 const photoDescription = fullScreenImageDisplay.querySelector('.social__caption');
 const commentsList = fullScreenImageDisplay.querySelector('.social__comments');
-const commentItem = fullScreenImageDisplay.querySelector('.social__comment');
+const commentItem = commentsList.querySelector('.social__comment');
 let commentsStep = DEFAULT_COMMENT_STEP;
 
 const onDocumentKeyDown = (evt) => {
@@ -57,7 +57,7 @@ const addComments = (commentsArray) => {
 };
 
 const loadComments = (commentUser) => {
-  commentsStep += 5;
+  commentsStep += DEFAULT_COMMENT_STEP;
   renderComments(commentUser.slice(commentsList.children.length, commentsStep));
 };
 
