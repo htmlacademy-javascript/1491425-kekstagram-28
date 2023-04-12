@@ -13,6 +13,7 @@ const onPictureClicked = (evt, data) => {
     const desiredElement = evt.target.closest('.picture');
     const desiredObject = data.find((element) => element.id === Number(desiredElement.dataset.id));
     renderImage(desiredObject);
+    addedComments = [];
     const comments = desiredObject.comments;
     addedComments = addedComments.concat(comments);
     addComments(comments);

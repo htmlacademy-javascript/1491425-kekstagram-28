@@ -3,7 +3,6 @@ import {addPictures} from './rendering.js';
 import {addFilterListeners} from './filter.js';
 import {showAlert} from './notifications.js';
 
-
 const getPictures = () => {
   getData()
     .then((response) => {
