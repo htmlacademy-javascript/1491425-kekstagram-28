@@ -17,11 +17,11 @@ let commentsStep = DEFAULT_COMMENT_STEP;
 const onDocumentKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    сloseImageModal (evt);
+    closeImageModal(evt);
   }
 };
 
-const onCloseBtnClick = (evt) => сloseImageModal(evt);
+const onCloseBtnClick = (evt) => closeImageModal(evt);
 
 const imageModalOpen = () => {
   fullScreenImageDisplay.classList.remove('hidden');
@@ -61,7 +61,7 @@ const loadComments = (commentUser) => {
   renderComments(commentUser.slice(commentsList.children.length, commentsStep));
 };
 
-function сloseImageModal (evt) {
+function closeImageModal(evt) {
   evt.preventDefault();
   fullScreenImageDisplay.classList.add('hidden');
   body.classList.remove('modal-open');

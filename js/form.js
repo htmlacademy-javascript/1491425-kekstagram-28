@@ -16,7 +16,7 @@ const closeFormBtn = uploadForm.querySelector('.img-upload__cancel');
 const scaleControlValue = uploadForm.querySelector('.scale__control--value');
 const scaleControls = uploadForm.querySelector('.img-upload__scale');
 const imgUploadContainer = uploadForm.querySelector('.img-upload__preview');
-const imgUploadPrewiev = imgUploadContainer.querySelector('img');
+const photoPreview = imgUploadContainer.querySelector('img');
 const effectsList = uploadForm.querySelector('.effects__list');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 
@@ -27,14 +27,14 @@ const onScaleControlsClick = (evt) => {
   if (evt.target.closest('.scale__control--bigger') && getNumber(scaleControlValue.value) < MAX_SCALE_AMOUNT) {
     scaleControlValue.value = `${getNumber(scaleControlValue.value) + SCALE_STEP}%`;
   }
-  imgUploadPrewiev.style.transform = `scale(${getNumber(scaleControlValue.value) / 100})`;
+  photoPreview.style.transform = `scale(${getNumber(scaleControlValue.value) / 100})`;
 };
 
 const resetForm = () => {
   uploadForm.reset();
-  imgUploadPrewiev.style.transform = 'scale(1)';
-  imgUploadPrewiev.style.filter = '';
-  imgUploadPrewiev.removeAttribute('class');
+  photoPreview.style.transform = 'scale(1)';
+  photoPreview.style.filter = '';
+  photoPreview.removeAttribute('class');
 };
 
 const blockSubmitButton = () => {
@@ -77,7 +77,7 @@ const uploadFile = () => {
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
   if (matches) {
-    imgUploadPrewiev.src = URL.createObjectURL(file);
+    photoPreview.src = URL.createObjectURL(file);
   }
 };
 
@@ -107,4 +107,4 @@ function imgUploadClose () {
 }
 imgUploadInput.addEventListener('change', onImageUpload);
 
-export {imgUploadPrewiev, uploadForm};
+export {photoPreview, uploadForm};

@@ -1,4 +1,4 @@
-import {imgUploadPrewiev} from './form.js';
+import {photoPreview} from './form.js';
 
 const Filter = {
   CHROME: {
@@ -91,7 +91,7 @@ const getSliderValue = (effect) => {
     updateSlider(effect.toUpperCase());
     slider.noUiSlider.on('update', () => {
       sliderValue.value = slider.noUiSlider.get();
-      imgUploadPrewiev.style.filter = `${Filter[effect.toUpperCase()].filter}(${slider.noUiSlider.get()}${Filter[effect.toUpperCase()].dimension})`;
+      photoPreview.style.filter = `${Filter[effect.toUpperCase()].filter}(${slider.noUiSlider.get()}${Filter[effect.toUpperCase()].dimension})`;
       sliderFieldset.classList.remove('hidden');
     });
   }
@@ -100,9 +100,9 @@ const getSliderValue = (effect) => {
 const onEffectsListClick = (evt) => {
   if (evt.target.closest('.effects__radio')) {
     sliderValue.value = 1;
-    imgUploadPrewiev.removeAttribute('class');
-    imgUploadPrewiev.style = '';
-    imgUploadPrewiev.classList.add(`effects__preview--${evt.target.value}`);
+    photoPreview.removeAttribute('class');
+    photoPreview.style = '';
+    photoPreview.classList.add(`effects__preview--${evt.target.value}`);
     getSliderValue(evt.target.value);
   }
 };
